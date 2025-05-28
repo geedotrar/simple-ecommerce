@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
@@ -129,6 +130,27 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Login failed',
+                'data' => null,
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function logout(): JsonResponse
+    {
+        try {
+            $this->authService->logout();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Logout successful',
+                'data' => null,
+                'error' => null
+            ], 200);
+        } catch (JWTException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Logout failed',
                 'data' => null,
                 'error' => $e->getMessage()
             ], 500);
