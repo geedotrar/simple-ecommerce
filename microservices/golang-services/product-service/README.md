@@ -37,13 +37,13 @@ This is a microservice built with Go that handles product management. It support
     SERVER_PORT=8080
 
     # PostgreSQL Database Configuration
-    DATABASE_URL_CONFIGURATION=host=localhost user=postgres password=password dbname=ags_products_db port=5432 sslmode=disable
+    DATABASE_URL=host=localhost user=postgres password=password dbname=ags_products_db port=5432 sslmode=disable
 
     # Local File Upload Directory
     UPLOAD_DIR=uploads
 
     # Auth Service Access URL
-    AUTH_ACCESS_URL=http://localhost:8000/api/access
+    USER_AUTH_ACCESS_URL=http://localhost:8000/api/access
 
     # Redis Configuration
     REDIS_HOST=localhost
